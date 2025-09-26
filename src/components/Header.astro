@@ -1,0 +1,40 @@
+ 
+<header class="bg-blue-800 text-white py-4 sticky top-0 z-10">
+  <div class="max-w-4xl mx-auto px-4 flex justify-between items-center">
+    <div>
+      <h1 class="text-xl font-bold">Bungalow Los Abuelos</h1>
+      <p class="text-sm">Villa Elisa, Entre Ríos</p>
+    </div>
+    <!-- Botón hamburguesa para mobile -->
+    <button id="menu-toggle" class="md:hidden p-2 focus:outline-none">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+    <!-- Menú de navegación visible en desktop -->
+    <nav class="hidden md:flex">
+      <ul class="flex space-x-4">
+        <li><a href="#inicio" class="hover:text-blue-300">Inicio</a></li>
+        <li><a href="#bungalow" class="hover:text-blue-300">El Bungalow</a></li>
+        <li><a href="#termas" class="hover:text-blue-300">Termas</a></li>
+        <li><a href="#villa-elisa" class="hover:text-blue-300">Villa Elisa</a></li>
+        <li><a href="#contacto" class="hover:text-blue-300">Contacto</a></li>
+      </ul>
+    </nav>
+  </div>
+  <!-- Menú hamburguesa dropdown para mobile -->
+  <div id="mobile-menu" class="md:hidden hidden bg-blue-900 py-2">
+    <ul class="px-4 space-y-2">
+      <li><a data-menu-item href="#inicio" class="block py-2 hover:text-blue-300">Inicio</a></li>
+      <li><a data-menu-item href="#bungalow" class="block py-2 hover:text-blue-300">El Bungalow</a></li>
+      <li><a data-menu-item href="#termas" class="block py-2 hover:text-blue-300">Termas</a></li>
+      <li><a data-menu-item href="#villa-elisa" class="block py-2 hover:text-blue-300">Villa Elisa</a></li>
+      <li><a data-menu-item href="#contacto" class="block py-2 hover:text-blue-300">Contacto</a></li>
+    </ul>
+  </div>
+
+  <script>
+    import { initMenu } from '@/lib/menu';
+    initMenu();
+  </script>
+</header>
