@@ -11,7 +11,7 @@ const defaultImages: GalleryItem[] = [
 
 const {
   title = "Galería",
-  linkHref = "/GalleryPage",
+  linkHref = "/Galeria",
   images = defaultImages,
   limit,
 } = Astro.props;
@@ -37,20 +37,5 @@ const displayed: GalleryItem[] = typeof limit === "number" ? images.slice(0, lim
       </li>
     ))}
   </ul>
-
-  <div id="gallery-overlay" class="hidden fixed inset-0 z-50 bg-black/70 p-4 md:p-8" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-    <figure class="relative max-w-5xl mx-auto">
-      <button id="gallery-close" type="button" aria-label="Cerrar" class="absolute -top-3 -right-3 md:-top-4 md:-right-4 rounded-full bg-white text-gray-900 hover:bg-gray-100 shadow p-2">
-        ✕
-      </button>
-      <img id="gallery-image" src="" alt="" class="w-full max-h-[80vh] object-contain rounded-md bg-black/20" />
-      <figcaption id="modal-title" class="mt-2 text-center text-sm text-white/90"></figcaption>
-    </figure>
-  </div>
 </section>
-
-<script type="module">
-  import { initGalleryModal } from '@/lib/galleryModal.ts';
-  initGalleryModal();
-</script>
 
