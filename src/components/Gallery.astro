@@ -1,0 +1,56 @@
+---
+type GalleryItem = { src: string; alt: string };
+const defaultImages: GalleryItem[] = [
+  { src: "https://picsum.photos/seed/la1/800/600", alt: "Piscina junto a los bungalows" },
+  { src: "https://picsum.photos/seed/la2/800/600", alt: "Parque arbolado" },
+  { src: "https://picsum.photos/seed/la3/800/600", alt: "Interior del bungalow" },
+  { src: "https://picsum.photos/seed/la4/800/600", alt: "Galería con hamacas" },
+  { src: "https://picsum.photos/seed/la5/800/600", alt: "Asador y quincho" },
+  { src: "https://picsum.photos/seed/la6/800/600", alt: "Atardecer en el predio" },
+];
+
+const {
+  title = "Galería",
+  linkHref = "/GalleryPage",
+  images = defaultImages,
+  limit,
+} = Astro.props;
+
+const displayed: GalleryItem[] = typeof limit === "number" ? images.slice(0, limit) : images;
+---
+
+<section aria-labelledby="gallery-heading" class="max-w-6xl mx-auto px-4">
+  <header class="mb-4 flex items-baseline justify-between">
+    <h2 id="gallery-heading" class="text-2xl font-semibold tracking-tight">
+      <a href={linkHref} class="hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 rounded-sm">
+        {title}
+      </a>
+    </h2>
+  </header>
+
+  <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    {displayed.map((img, index) => (
+      <li>
+        <a href={img.src} data-index={index} class="block group" aria-label={`Ver ${img.alt}`}>
+          <img src={img.src} alt={img.alt} loading="lazy" class="w-full h-48 object-cover rounded-md shadow-sm group-hover:opacity-90 transition-opacity" />
+        </a>
+      </li>
+    ))}
+  </ul>
+
+  <div id="gallery-overlay" class="hidden fixed inset-0 z-50 bg-black/70 p-4 md:p-8" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <figure class="relative max-w-5xl mx-auto">
+      <button id="gallery-close" type="button" aria-label="Cerrar" class="absolute -top-3 -right-3 md:-top-4 md:-right-4 rounded-full bg-white text-gray-900 hover:bg-gray-100 shadow p-2">
+        ✕
+      </button>
+      <img id="gallery-image" src="" alt="" class="w-full max-h-[80vh] object-contain rounded-md bg-black/20" />
+      <figcaption id="modal-title" class="mt-2 text-center text-sm text-white/90"></figcaption>
+    </figure>
+  </div>
+</section>
+
+<script type="module">
+  import { initGalleryModal } from '@/lib/galleryModal.ts';
+  initGalleryModal();
+</script>
+

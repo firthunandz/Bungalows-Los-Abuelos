@@ -2,15 +2,13 @@
 import Layout from '@/layouts/Layout.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
-import Hero from '@/components/Hero.astro';
 import Gallery from '@/components/Gallery.astro';
 ---
 
 <Layout>
-	<Header />
-	<main class="flex-1">
-		<Hero />
-		<Gallery title="Galería" linkHref="/GalleryPage" limit={3} />
-	</main>
-	<Footer />
+  <Header />
+  <main class="flex-1">
+    <Gallery title="Galería completa" linkHref="/GalleryPage" />
+  </main>
+  <Footer />  
 </Layout>
